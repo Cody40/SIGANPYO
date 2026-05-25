@@ -25,7 +25,7 @@ def update_week(d1, d2):
         index = json.loads(f.read())
     
     for e in index:
-        if (numfy_date > int(e["stt_date"].split("/")[0])*100 + int(e["stt_date"].split("/")[1])) and (numfy_date < int(e["end_date"].split("/")[0])*100 + int(e["end_date"].split("/")[1])):
+        if (numfy_date >= int(e["stt_date"].split("/")[0])*100 + int(e["stt_date"].split("/")[1])) and (numfy_date <= int(e["end_date"].split("/")[0])*100 + int(e["end_date"].split("/")[1])):
             target_file = e["filename"]
     
     #찾은 json 파일 열고 편집 후 다시 저장
