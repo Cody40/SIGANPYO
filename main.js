@@ -1,4 +1,4 @@
-const class_dd = document.getElementById("class_list");
+const class_dd = document.getElementById("class_dd");
 const grade_dd = document.getElementById("grade_dd");
 
 const index = await fetch("https://cody40.github.io/SIGANPYO/ttble_2026/index.json").then(r => r.json());
