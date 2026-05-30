@@ -1,7 +1,7 @@
 const class_dd = document.getElementById("class_list");
 const grade_dd = document.getElementById("grade_dd");
 
-const index = await fetch("ttble_2026/index.json").then(r => r.json());
+const index = await fetch("https://cody40.github.io/SIGANPYO/ttble_2026/index.json").then(r => r.json());
 const cls_per_grd = [index[index.length - 1]["1"], index[index.length - 1]["2"], index[index.length - 1]["3"]];
 const title_grade = document.getElementById('title_grade');
 const title_class = document.getElementById('title_class');
