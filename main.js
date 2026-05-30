@@ -53,6 +53,5 @@ grade_dd.addEventListener('change', function() {
 
 class_dd.addEventListener('change', function() {
     localStorage.setItem("s_class", this.value);
-    title_grade.textContent = localStorage.getItem("s_grade");
     title_class.textContent = localStorage.getItem("s_class");
 });
