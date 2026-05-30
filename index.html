@@ -4,49 +4,40 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>시간표</title>
-  <!-- 테두리 -->
-  <style>
-    table { border-collapse: collapse; }
-    th, td { border: 1px solid #999; }
-  </style>
+  <link rel="stylesheet" href="style.css">
+  <script src="main.js" defer></script>
 </head>
 <body>
+<div id="date_div">
+  <!-- json 읽고 가능한 주 찾기, 아직 안함 -->
+  <select id="date" name="date">
+    <option value="2026-05-25">26-05-25 ~ 26-05-30</option>
+    <option value="2026-05-18">26-05-18 ~ 26-05-23</option>
+    <option value="2026-06-01">26-06-01 ~ 26-06-06</option>
+  </select>
 
-<!--드롭다운 -->
-  <div>
-    <select id="date" name="date">
-      <option value="2026-05-25">26-05-25 ~ 26-05-30</option>
-      <option value="2026-05-18">26-05-18 ~ 26-05-23</option>
-      <option value="2026-06-01">26-06-01 ~ 26-06-06</option>
-    </select>
-
-    <label for="class">반</label>
-    <!-- ㄷㄹㄷㅇ-->
-    <select id="class" name="class">
-      <option value="2-1">2-1</option>
-      <option value="2-2">2-2</option>
-      <option value="2-3">2-3</option>
-      <option value="2-4">2-4</option>
-      <option value="2-5">2-5</option>
-      <option value="2-6" selected>2-6</option>
-    </select>
-  </div>
+  <p style="margin-left: 5px; margin-right: 5px;">-</p>
+  <!-- json에서 학년당 몇 반인지 읽고 컨트롤-->
+    <select id="grade_dd" name="grade">
+    <option value="1">1</option>
+    <option value="2">2</option>
+    <option value="3">3</option>
+  </select>
+  <p>학년</p>
+  <select id="class_dd">
+  </select>
+  <p>반</p>
+</div>
 
 <!--버튼+제목 -->
-  <div>
-    <button type="button">◀</button>
-    <span>2 학년 <span id="title-class">6</span> 반 시간표</span>
-    <button type="button">▶</button>
-  </div>
-
-  <script>
-    const sel = document.getElementById('class');
-    sel.addEventListener('change', function() {
-      document.getElementById('title-class').textContent = this.value.split('-')[1];
-    });
-  </script>
+<div id="btn_class_btn">
+  <button type="button">◀</button>
+  <span id="title_grade">1</span>학년 <span id="title_class">1</span>반 시간표
+  <button type="button">▶</button>
+</div>
 
 <!--표-->
+<div id="ttable">
   <table>
     <thead>
       <tr>
@@ -89,6 +80,6 @@
       </tr>
     </tbody>
   </table>
-
+</div>
 </body>
 </html>
