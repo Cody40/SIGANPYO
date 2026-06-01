@@ -5,8 +5,8 @@ import json
 
 
 API_KEY = "" #키는 깃헙 액션즈 시크릿 써서 저장할 수 있음
-SC_CODE = "J10"
-SC_SCHUL_CODE = "7531165"
+SC_CODE = ""
+SC_SCHUL_CODE = ""
 
 
 
