@@ -1,0 +1,39 @@
+# lessgo
+
+name: Grab Timetable Data
+
+# Controls when the workflow will run
+on:
+  schedule:
+    - cron: "0 17 * * *" # this is gmt btw
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called "build"
+  run-daily:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - name: checkout this repo
+        uses: actions/checkout@v4
+        
+      - name: setup python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+
+      - name: Install requests
+        run: pip install requests
+
+      - name: run the python script
+        env:
+          NEIS_API_KEY: ${{ secrets.MY_API_KEY }}
+          SC_CODE: ${{ secrets.SC_CODE }}
+          SD_SCHUL_CODE: ${{ secrets.SD_SCHUL_CODE }}
+        run: python script.py
