@@ -20,10 +20,15 @@ def update_thru(firstday, lastday):
         req_url = f'https://open.neis.go.kr/hub/hisTimetable?KEY={API_KEY}&Type=json&pIndex={p_index}&pSize={p_size}&ATPT_OFCDC_SC_CODE={SC_CODE}&SD_SCHUL_CODE={SD_SCHUL_CODE}&TI_FROM_YMD={firstday}&TI_TO_YMD={lastday}'
 
         response_full = requests.get(req_url).json()
-        if "hisTimetable" in response_full:
-            ttble = response_full["hisTimetable"][1]["row"]
-        else:
+        if "RESULT" in response_full:
+            if response_full["RESULT"]["CODE"] == "INFO-200":
+                break
+        if "hisTimetable" not in response_full:
             break
+        if p_index > 30:
+            break
+
+        ttble = response_full["hisTimetable"][1]["row"]
 
         tg_year, tg_month = firstday[:4], firstday[4:6]
 
