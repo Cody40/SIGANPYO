@@ -20,15 +20,16 @@ def update_thru(firstday, lastday):
         req_url = f'https://open.neis.go.kr/hub/hisTimetable?KEY={API_KEY}&Type=json&pIndex={p_index}&pSize={p_size}&ATPT_OFCDC_SC_CODE={SC_CODE}&SD_SCHUL_CODE={SD_SCHUL_CODE}&TI_FROM_YMD={firstday}&TI_TO_YMD={lastday}'
 
         response_full = requests.get(req_url).json()
+        #와일문도망치기
         if "RESULT" in response_full:
             if response_full["RESULT"]["CODE"] == "INFO-200":
-                print("INFO-200")
+                print("Reached the last page of the request")
                 break
         if "hisTimetable" not in response_full:
-            print("nohisTimetable")
+            print("no hisTimetable?? they might have changed the api if this printed")
             break
         if p_index > 30:
-            print("index over 30")
+            print("page index over 30, hard coded stop")
             break
 
         ttble = response_full["hisTimetable"][1]["row"]
