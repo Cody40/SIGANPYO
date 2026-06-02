@@ -27,22 +27,22 @@ def update_thru(firstday, lastday):
 
         tg_year, tg_month = firstday[:4], firstday[4:6]
 
-        original = return_dict(f"ttble_{tg_year}/{tg_month}.json")
+        original = return_dict(f"data/{tg_year}/{tg_month}.json")
 
         for e in ttble:
             cg_year, cg_month = e["ALL_TI_YMD"][:4], e["ALL_TI_YMD"][4:6]
 
             if cg_month != tg_month:
-                with open(f"ttble_{tg_year}/{tg_month}.json", "w", encoding="utf-8") as f:
+                with open(f"data/{tg_year}/{tg_month}.json", "w", encoding="utf-8") as f:
                     json.dump(original, f, ensure_ascii=False, indent=2)
                 
                 tg_month, tg_year = cg_month, cg_year
-                original = return_dict(f"ttble_{tg_year}/{tg_month}.json")
+                original = return_dict(f"data/{tg_year}/{tg_month}.json")
             
             clsnum = e["GRADE"] + e["CLASS_NM"].zfill(2)
             original.setdefault(e["ALL_TI_YMD"][6:], {}).setdefault(clsnum, {})[e["PERIO"]] = e["ITRT_CNTNT"]
         
-        with open(f"ttble_{tg_year}/{tg_month}.json", "w", encoding="utf-8") as f:
+        with open(f"data/{tg_year}/{tg_month}.json", "w", encoding="utf-8") as f:
             json.dump(original, f, ensure_ascii=False, indent=2)
         
         p_index += 1
