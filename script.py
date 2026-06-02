@@ -22,10 +22,13 @@ def update_thru(firstday, lastday):
         response_full = requests.get(req_url).json()
         if "RESULT" in response_full:
             if response_full["RESULT"]["CODE"] == "INFO-200":
+                print("INFO-200")
                 break
         if "hisTimetable" not in response_full:
+            print("nohisTimetable")
             break
         if p_index > 30:
+            print("index over 30")
             break
 
         ttble = response_full["hisTimetable"][1]["row"]
