@@ -33,7 +33,7 @@ jobs:
 
       - name: run the python script
         env:
-          NEIS_API_KEY: ${{ secrets.MY_API_KEY }}
+          NEIS_API_KEY: ${{ secrets.NEIS_API_KEY }}
           SC_CODE: ${{ secrets.SC_CODE }}
           SD_SCHUL_CODE: ${{ secrets.SD_SCHUL_CODE }}
         run: python script.py
