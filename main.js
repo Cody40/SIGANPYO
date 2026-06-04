@@ -39,9 +39,8 @@ title_class.textContent = localStorage.getItem("s_class");
 
 
 // 5개주들 드랍다운 옵션 추가
-// const 개많네 미안하다 한번만 봐줘 제발 잘못했어
-const weekday = today.getDay() - 1;
 var mondayy = new Date();
+const weekday = mondayy.getDay() - 1;
 mondayy.setDate(mondayy.getDate() - weekday - 14);
 
 date_dd.innerHTML = "";
