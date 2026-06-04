@@ -2,7 +2,7 @@ const class_dd = document.getElementById("class_dd");
 const grade_dd = document.getElementById("grade_dd");
 const date_dd  = document.getElementById("date");
 const BASE = "https://cody40.github.io/SIGANPYO/";
-const index = await fetch(BASE + "index.json").then(r => r.json());
+//const index = await fetch(BASE + "index.json").then(r => r.json());
 const cls_per_grd = [10,9,9];
 const title_grade = document.getElementById('title_grade');
 const title_class = document.getElementById('title_class');
@@ -100,6 +100,7 @@ async function renderTable() {
     if (filename === null) return;
 
     if (cache[filename] === undefined) {
+        //이거 고쳐야됨
         cache[filename] = await fetch(BASE + filename).then(r => r.json());
     }
     const data = cache[filename];
@@ -170,9 +171,3 @@ class_dd.addEventListener('change', function() {
     title_class.textContent = localStorage.getItem("s_class");
     renderTable();
 });
-
-date_dd.addEventListener('change', renderTable);
-//이벤트리스너끝
-
-
-renderTable();
