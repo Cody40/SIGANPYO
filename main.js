@@ -1,15 +1,16 @@
 const class_dd = document.getElementById("class_dd");
 const grade_dd = document.getElementById("grade_dd");
 const date_dd  = document.getElementById("date");
-const BASE = "https://cody40.github.io/SIGANPYO/ttble_2026/";
+const BASE = "https://cody40.github.io/SIGANPYO/";
 const index = await fetch(BASE + "index.json").then(r => r.json());
-const cls_per_grd = [index[index.length - 1]["1"], index[index.length - 1]["2"], index[index.length - 1]["3"]];
+const cls_per_grd = [10,9,9];
 const title_grade = document.getElementById('title_grade');
 const title_class = document.getElementById('title_class');
 
 const cache={}; //캐시. 다시보니깐 안써도 됨. 설명 실수함 (f5누르면 다 날라감)
 
 
+// 학년 드랍다운 1 또는 저장값
 if (localStorage.getItem("s_grade") === null) {
     localStorage.setItem("s_grade", "1");
     grade_dd.value = "1";
@@ -17,12 +18,14 @@ if (localStorage.getItem("s_grade") === null) {
     grade_dd.value = localStorage.getItem("s_grade");
 }
 
+// 학년당 반 수 맞게 드랍다운 추가
 class_dd.innerHTML = "";
 let totalcls = cls_per_grd[grade_dd.value - 1];
 for (let i = 1; i <= totalcls; i++) {
     class_dd.innerHTML += '<option value="' + String(i) + '">' + String(i) + '</option>';
 };
 
+// 반 드랍다운 1또는 저장값
 if (localStorage.getItem("s_class") === null) {
     localStorage.setItem("s_class", "1");
     class_dd.value = "1";
@@ -30,8 +33,26 @@ if (localStorage.getItem("s_class") === null) {
     class_dd.value = localStorage.getItem("s_class");
 };
 
+// 시간표 제목 설정
 title_grade.textContent = localStorage.getItem("s_grade");
 title_class.textContent = localStorage.getItem("s_class");
+
+
+// 5개주들 드랍다운 옵션 추가
+// const 개많네 미안하다 한번만 봐줘 제발 잘못했어
+const weekday = today.getDay() - 1;
+var mondayy = new Date();
+mondayy.setDate(mondayy.getDate() - weekday - 14);
+
+date_dd.innerHTML = "";
+for (let i = 0; i < 5; i++) {
+    let monday_tsweek = mondayy.toLocaleDateString("en-CA").slice(2)
+    mondayy.setDate(mondayy.getDate() + 4);
+    let friday_tsweek = mondayy.toLocaleDateString("en-CA").slice(2)
+    date_dd.innerHTML += '<option value="' + String(i + 1) + '">' + monday_tsweek + '~' +  friday_tsweek + '</option>';
+    mondayy.setDate(mondayy.getDate() + 3);
+};
+
 
 function findFile(dateValue) {
     const month = Number(dateValue.split("-")[1]);
@@ -122,6 +143,8 @@ async function renderTable() {
     }
 }
 
+
+//이벤트리스너들
 grade_dd.addEventListener('change', function() {
     class_dd.innerHTML = "";
     let totalClasses = cls_per_grd[this.value-1];
@@ -148,8 +171,8 @@ class_dd.addEventListener('change', function() {
     renderTable();
 });
 
-
-
-
 date_dd.addEventListener('change', renderTable);
+//이벤트리스너끝
+
+
 renderTable();
