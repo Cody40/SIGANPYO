@@ -1,8 +1,12 @@
+body {
+    background-color: wheat;
+}
 table { 
-    border-collapse: collapse; 
+    border-collapse: collapse;
 }
 th, td { 
-    border: 1px solid #999; 
+    border: 3px solid black;
+    color: black;
 }
 #date_div, #btn_class_btn, #ttable {
     justify-content: center;
@@ -25,4 +29,30 @@ th, td {
     width: 40px;
     height: 30px;
     font-size: 18px;
+}
+td {
+    width: 100px;
+    height: 60px;
+    text-align: center;
+    background-color: white;
+}
+th {
+    background-color: #ffff59;
+}
+#lgbtq {
+    animation: lgbtq 0.5s infinite;
+}
+@keyframes lgbtq {
+    100%,0%{background-color: rgb(255,0,0);}
+    8%{background-color: rgb(255,127,0);}
+    16%{background-color: rgb(255,255,0);}
+    25%{background-color: rgb(127,255,0);}
+    33%{background-color: rgb(0,255,0);}
+    41%{background-color: rgb(0,255,127);}
+    50%{background-color: rgb(0,255,255);}
+    58%{background-color: rgb(0,127,255);}
+    66%{background-color: rgb(0,0,255);}
+    75%{background-color: rgb(127,0,255);}
+    83%{background-color: rgb(255,0,255);}
+    91%{background-color: rgb(255,0,127);}
 }
