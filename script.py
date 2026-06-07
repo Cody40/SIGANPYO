@@ -101,4 +101,4 @@ if __name__ == "__main__":
     weekday = -1*((weekday // 6)*-7 + weekday)
     # 일요일을 1로 바꿔야됨, 일욜~토욜을 한주로 봄
 
-    update_thru(add_days(yy, mm, dd, weekday - 14), add_days(yy, mm, dd, weekday + 25)) #2주 전 ~ 3주 후
+    update_thru(add_days(yy, mm, dd, weekday - 14), add_days(yy, mm, dd, weekday + 25)) #2주 전 ~ 2주 후
