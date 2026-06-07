@@ -45,27 +45,13 @@ mondayy.setDate(mondayy.getDate() - weekday - 14);
 
 date_dd.innerHTML = "";
 for (let i = 0; i < 5; i++) {
-    let monday_tsweek = mondayy.toLocaleDateString("en-CA").slice(2)
+    let monday_value = mondayy.toLocaleDateString("en-CA");
+    let monday_tsweek = monday_value.slice(2);
     mondayy.setDate(mondayy.getDate() + 4);
     let friday_tsweek = mondayy.toLocaleDateString("en-CA").slice(2)
-    date_dd.innerHTML += '<option value="' + String(i + 1) + '">' + monday_tsweek + '~' +  friday_tsweek + '</option>';
+    date_dd.innerHTML += '<option value="' + monday_value + '">' + monday_tsweek + '~' +  friday_tsweek + '</option>';
     mondayy.setDate(mondayy.getDate() + 3);
 };
-
-
-function findFile(dateValue) {
-    const month = Number(dateValue.split("-")[1]);
-    const day   = Number(dateValue.split("-")[2]);
-    const num = month * 100 + day;
- 
-    for (const sibal of index) {
-        if (sibal.stt_date === undefined) continue;
-        const stt = Number(sibal.stt_date.split("/")[0]) * 100 + Number(sibal.stt_date.split("/")[1]);
-        const end = Number(sibal.end_date.split("/")[0]) * 100 + Number(sibal.end_date.split("/")[1]);
-        if (num >= stt && num <= end) return sibal.filename;
-    }
-    return null;
-}
 
 const dayNames = ["월", "화", "수", "목", "금"];
  
@@ -91,18 +77,9 @@ async function renderTable() {
             "진로 영어", "교육학", "미술 감상과 비평", "음악 감상과 비평",
             "일본 문화", "중국 문화"]
         };
-
+        
     title_grade.textContent = grade;
     title_class.textContent = cls;
- 
-    const filename = findFile(dateValue);
-    if (filename === null) return;
-
-    if (cache[filename] === undefined) {
-        //이거 고쳐야됨
-        cache[filename] = await fetch(BASE + filename).then(r => r.json());
-    }
-    const data = cache[filename];
  
     const y  = Number(dateValue.split("-")[0]);
     const mo = Number(dateValue.split("-")[1]);
@@ -113,22 +90,33 @@ async function renderTable() {
     const headers = document.querySelectorAll("#ttable thead th");
 
     const replaceText = "선택";
- 
     for (let col = 0; col < 5; col++) {
         const thatDay = new Date(monday);
+
         thatDay.setDate(monday.getDate() + col);
+        const yy = String(thatDay.getFullYear());
+
+        const mm = String(thatDay.getMonth() + 1).padStart(2, "0");
         const dd = String(thatDay.getDate()).padStart(2, "0");
+
+        const filename = "data/" + yy + "/" + mm + ".json";
  
         headers[col + 1].textContent = dayNames[col] + " (" + thatDay.getDate() + "일)";
+
+        if (cache[filename] === undefined) {
+            cache[filename] = await fetch(BASE + filename).then(r => r.ok ? r.json() : {});
+        }
+        const data = cache[filename];
  
-        let subjects = [];
+        let subjects = {};
         if (data[dd] !== undefined && data[dd][clsnum] !== undefined) {
             subjects = data[dd][clsnum];
+
         }
  
         for (let p = 0; p < 7; p++) {
             const cell = rows[p].querySelectorAll("td")[col + 1];
-            let subject = subjects[p];
+            let subject = subjects[String(p + 1)];
             if (subject === undefined) {
                 cell.textContent = "";  
                 continue;
@@ -170,3 +158,6 @@ class_dd.addEventListener('change', function() {
     title_class.textContent = localStorage.getItem("s_class");
     renderTable();
 });
+
+date_dd.addEventListener('change', renderTable);
+renderTable();
