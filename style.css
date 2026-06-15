@@ -8,15 +8,16 @@ th, td {
     border: 3px solid black;
     color: black;
 }
-#top_area, #ttable {
-    justify-content: center;
-    align-items: center;
-    display: flex;
-    gap: 3px;
-    margin-top: 2px;
+#wrapper {
     width: fit-content;
     margin-left: auto;
     margin-right: auto;
+}
+#top_area, #ttable {
+    display: flex;
+    align-items: center;
+    gap: 3px;
+    margin-top: 2px;
 }
 td {
     width: 100px;
