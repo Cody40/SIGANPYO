@@ -157,13 +157,16 @@ async function renderTable() {
             const subject = getCleanedSubject(subjects[String(p + 1)]);
             if (subject === undefined) {
                 cell.textContent = "";
+                cell.style = "background: #d0d0d0;"
                 continue;
             }
             if (COMMON[grade].includes(subject)) {
                 cell.textContent = subject;
+                cell.style = "background: #ffffff;"
             } else {
                 const userPick = picks[cellKey(dateValue, col, p + 1)];
                 cell.textContent = (userPick && userPick.length > 0) ? userPick : "";
+                cell.style = "background: #eefefe;"
             }
         }
     }
