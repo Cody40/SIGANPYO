@@ -8,32 +8,33 @@
   <script src="main.js" type="module"></script>
 </head>
 <body>
-<div id="date_div">
-  <!-- json 읽고 가능한 주 찾기, 아직 안함 -->
-  <select id="date">
-    <option value="2026-05-25">26-05-25 ~ 26-05-30</option>
-    <option value="2026-05-18">26-05-18 ~ 26-05-23</option>
-    <option value="2026-06-01">26-06-01 ~ 26-06-06</option>
-  </select>
 
-  <p style="margin-left: 5px; margin-right: 5px;"><b>-</b></p>
-  <!-- json에서 학년당 몇 반인지 읽고 컨트롤-->
-    <select id="grade_dd" name="grade">
-    <option value="1">1</option>
-    <option value="2">2</option>
-    <option value="3">3</option>
-  </select>
-  <p><b>학년</b></p>
-  <select id="class_dd">
-  </select>
-  <p><b>반</b></p>
+<div id="modal_bg" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.5); z-index:10;">
+  <div style="background:white; margin:100px auto; padding:20px; width:300px;">
+    <p><b>주 선택</b></p>
+    <select id="date" style="width:100%; margin-bottom:10px;">
+    </select>
+
+    <p><b>학년 선택</b></p>
+    <select id="grade_dd" name="grade" style="width:100%; margin-bottom:10px;">
+      <option value="1">1</option>
+      <option value="2">2</option>
+      <option value="3">3</option>
+    </select>
+
+    <p><b>반 선택</b></p>
+    <select id="class_dd" style="width:100%; margin-bottom:10px;">
+    </select>
+
+    <br>
+    <button type="button" onclick="closeModal()">닫기</button>
+  </div>
 </div>
 
-<!--버튼+제목 -->
-<div id="btn_class_btn">
-  <button type="button">◀</button>
-  <b><span id="title_grade">>1</span>학년 <span id="title_class">1</span>반 시간표</b>
-  <button type="button">▶</button>
+<!--설정 버튼+제목 -->
+<div id="top_area">
+  <b><span id="title_grade">1</span>학년 <span id="title_class">1</span>반 시간표</b>
+  <button type="button" onclick="openModal()">설정</button>
 </div>
 
 <!--표-->
