@@ -53,6 +53,23 @@ for (let i = 0; i < 5; i++) {
     mondayy.setDate(mondayy.getDate() + 3);
 };
 
+//이부분 코파일럿 도움받음. 문제있을경우 말해줘
+var today = new Date();
+var todayDay = today.getDay();
+
+if (todayDay === 0) {
+    today.setDate(today.getDate() + 1);
+} else {
+    today.setDate(today.getDate() - (todayDay - 1));
+}
+
+var todayMonday = today.toLocaleDateString("en-CA");
+
+if (date_dd.querySelector('option[value="' + todayMonday + '"]')) {
+    date_dd.value = todayMonday;
+}
+//
+
 const dayNames = ["월", "화", "수", "목", "금"];
  
 async function renderTable() {
@@ -161,3 +178,15 @@ class_dd.addEventListener('change', function() {
 
 date_dd.addEventListener('change', renderTable);
 renderTable();
+
+
+function openModal() {
+    document.getElementById("modal_bg").style.display = "block";
+}
+
+function closeModal() {
+    document.getElementById("modal_bg").style.display = "none";
+}
+
+window.openModal = openModal;
+window.closeModal = closeModal;
