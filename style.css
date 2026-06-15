@@ -1,5 +1,5 @@
 body {
-    background-color: wheat;
+    background-color: #ffffff;
 }
 table { 
     border-collapse: collapse;
@@ -8,28 +8,45 @@ th, td {
     border: 3px solid black;
     color: black;
 }
-#wrapper {
-    width: fit-content;
-    margin-left: auto;
-    margin-right: auto;
-}
-#top_area, #ttable {
-    display: flex;
+#date_div, #btn_class_btn, #ttable {
+    justify-content: center;
     align-items: center;
+    display: flex;
     gap: 3px;
     margin-top: 2px;
+}
+#date {
+    width: 200px;
+    height: 30px;
+    font-size: 18px;
+}
+#class_dd {
+    width: 50px;
+    height: 30px;
+    font-size: 18px;
+}
+#grade_dd {
+    width: 40px;
+    height: 30px;
+    font-size: 18px;
 }
 td {
     width: 100px;
     height: 60px;
     text-align: center;
+    font-weight: bold;
     background-color: white;
 }
 th {
     background-color: #ffff59;
+    font-weight: bold;
 }
 #lgbtq {
-    animation: lgbtq 0.5s infinite;
+    background-color: #ffffe5;
+}
+#title_grade, #title_class {
+    color: #4e4e4e;
+    -webkit-text-stroke: 1px black;
 }
 @keyframes lgbtq {
     100%,0%{background-color: rgb(255,0,0);}
@@ -44,4 +61,39 @@ th {
     75%{background-color: rgb(127,0,255);}
     83%{background-color: rgb(255,0,255);}
     91%{background-color: rgb(255,0,127);}
+}
+#opensettings {
+    background-color: rgb(255, 255, 255);
+    font-weight: bold;
+    width: 80px;
+    font-size: 15px;
+}
+#top_area {
+    font-size: 30px;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    margin-top: 2px;
+    margin-bottom: 5px;
+}
+#closebutton {
+    background-color: white;
+    font-weight: bold;
+    width: 50px;
+    height: 20px;
+}
+#bottom {
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    margin-top: 2px;
+    margin-bottom: 5px;
+    font-size: 15px;
+}
+.colorthingy {
+    color: rgb(194, 194, 194);
 }
