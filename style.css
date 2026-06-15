@@ -14,6 +14,9 @@ th, td {
     display: flex;
     gap: 3px;
     margin-top: 2px;
+    width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
 }
 td {
     width: 100px;
