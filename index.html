@@ -9,8 +9,8 @@
 </head>
 <body>
 
-<div id="modal_bg" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.5); z-index:10;">
-  <div style="background:white; margin:100px auto; padding:20px; width:300px;">
+<div id="modal_bg" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.5); z-index:10; overflow:auto;">
+  <div style="background:white; margin:40px auto; padding:20px; width:fit-content; max-width:95%;">
     <p><b>주 선택</b></p>
     <select id="date" style="width:100%; margin-bottom:10px;">
     </select>
@@ -26,6 +26,31 @@
     <select id="class_dd" style="width:100%; margin-bottom:10px;">
     </select>
 
+    <p><b>선택과목 설정</b></p>
+    <div id="settings_ttable">
+      <table>
+        <thead>
+          <tr>
+            <th>교시</th>
+            <th id="s_h1">월</th>
+            <th id="s_h2">화</th>
+            <th id="s_h3">수</th>
+            <th id="s_h4">목</th>
+            <th id="s_h5">금</th>
+          </tr>
+        </thead>
+        <tbody id="settings_tbody">
+          <tr><td><b>1</b></td><td></td><td></td><td></td><td></td><td></td></tr>
+          <tr><td><b>2</b></td><td></td><td></td><td></td><td></td><td></td></tr>
+          <tr><td><b>3</b></td><td></td><td></td><td></td><td></td><td></td></tr>
+          <tr><td><b>4</b></td><td></td><td></td><td></td><td></td><td></td></tr>
+          <tr><td><b>5</b></td><td></td><td></td><td></td><td></td><td></td></tr>
+          <tr><td><b>6</b></td><td></td><td></td><td></td><td></td><td></td></tr>
+          <tr><td><b>7</b></td><td></td><td></td><td></td><td></td><td></td></tr>
+        </tbody>
+      </table>
+    </div>
+
     <br>
     <button type="button" onclick="closeModal()">닫기</button>
   </div>
@@ -33,13 +58,11 @@
 
 <div id="wrapper">
 
-  <!--설정 버튼+제목 -->
   <div id="top_area">
     <b><span id="title_grade">1</span>학년 <span id="title_class">1</span>반 시간표</b>
     <button type="button" onclick="openModal()">설정</button>
   </div>
 
-  <!--표-->
   <div id="ttable">
     <table>
       <thead>
